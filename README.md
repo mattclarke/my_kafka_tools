@@ -6,3 +6,8 @@ Bits and pieces for working with Apache Kafka
 * Python script for querying the available topics
 * Python script for consuming a topic
 * Python script for creating a topic
+
+Note: Python scripts require the Confluent Kafka library to be installed.
+```
+pip install confluent-kafka
+```
