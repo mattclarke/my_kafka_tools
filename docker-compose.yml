@@ -14,7 +14,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_MESSAGE_MAX_BYTES: 10000000
       KAFKA_BROKER_ID: 0
-      KAFKA_CREATE_TOPICS: "hist_commands:1:1,hist_topic:1:1,hist_responses:1:1,UTGARD_forwarderConfig:1:1,UTGARD_forwarderStatus:1:1,UTGARD_forwarderStore:1:1,UTGARD_nicosCacheCompacted:1:1,UTGARD_nicosCacheHistory:1:1,UTGARD_writerCommand:1:1,UTGARD_writerStatus:1:1,UTGARD_writerCommandStatus:1:1,UTGARD_writerJobPool:1:1,jbi_heartbeat:1:1,hist-topic-1:1:1,hist-topic-2:1:1,ymir_jbi_heartbeat:1:1,ymir_jbi_responses:1:1,ymir_jbi_commands:1:1"
+      KAFKA_CREATE_TOPICS: "hist_topic:1:1,hist_responses:1:1,UTGARD_forwarderConfig:1:1,UTGARD_forwarderStatus:1:1,UTGARD_forwarderStore:1:1,UTGARD_nicosCacheCompacted:1:1,UTGARD_nicosCacheHistory:1:1,UTGARD_writerCommand:1:1,UTGARD_writerStatus:1:1,UTGARD_writerCommandStatus:1:1,UTGARD_writerJobPool:1:1,jbi_heartbeat:1:1,ymir_visualisation:1:1,ymir_jbi_heartbeat:1:1,ymir_jbi_responses:1:1,ymir_jbi_commands:1:1,UTGARD_jobPool:1:1,UTGARD_controlTopic:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:       
