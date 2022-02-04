@@ -11,3 +11,8 @@ Note: Python scripts require the Confluent Kafka library to be installed.
 ```
 pip install confluent-kafka
 ```
+
+## Running
+```
+docker compose up
+```
