@@ -14,7 +14,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_MESSAGE_MAX_BYTES: 10000000
       KAFKA_BROKER_ID: 0
-      KAFKA_CREATE_TOPICS: "UTGARD_forwarderConfig:1:1,UTGARD_forwarderStatus:1:1,UTGARD_forwarderStore:1:1,UTGARD_nicosCacheCompacted:1:1,UTGARD_nicosCacheHistory:1:1,local_jbi_heartbeat:1:1,local_jbi_responses:1:1,local_jbi_commands:1:1,local_filewriter_status:1:1,local_filewriter_pool:1:1,local_jbi_visualisation:1:1,local_filewriter:1:1"
+      KAFKA_CREATE_TOPICS: "local_jbi_heartbeat:1:1,local_jbi_responses:1:1,local_jbi_commands:1:1,local_filewriter_status:1:1,local_filewriter_pool:1:1,local_jbi_visualisation:1:1,local_filewriter:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:       
