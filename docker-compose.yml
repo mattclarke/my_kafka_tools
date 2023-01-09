@@ -1,24 +1,42 @@
-version: '3.7'
-
+version: '3.5'
 services:
-  kafka:
-    image: wurstmeister/kafka:2.13-2.6.0
+
+  zookeeper:
+    container_name: zookeeper
+    hostname: zookeeper
+    image: confluentinc/cp-zookeeper:7.2.1
+    restart: always
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - frontend
+
+  kafka1:
+    container_name: kafka1
+    hostname: kafka1
+    image: confluentinc/cp-server:7.2.1
+    restart: always
     depends_on:
       - wait_for_zookeeper
-    hostname: kafka
     ports:
       - "9092:9092"
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: localhost
-      KAFKA_ADVERTISED_PORT: 9092
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_MESSAGE_MAX_BYTES: 10000000
-      KAFKA_BROKER_ID: 0
-      KAFKA_CREATE_TOPICS: "local_jbi_heartbeat:1:1,local_jbi_responses:1:1,local_jbi_commands:1:1,local_filewriter_status:1:1,local_filewriter_pool:1:1,local_jbi_visualisation:1:1,local_filewriter:1:1,local_forwarder_commands:1:1,local_forwarder_status:1:1,local_forwarder_config:1:1,local_visualisation:1:1,local_detector:1:1"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:       
+      - "9099:9099"
+    networks:
       - frontend
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_BROKER_ID: 1
+      KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      ## listeners
+      KAFKA_LISTENERS: 'BROKERS://:9092'
+      KAFKA_ADVERTISED_LISTENERS: 'BROKERS://localhost:9092'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'BROKERS:PLAINTEXT'
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKERS
 
   wait_for_zookeeper:
     image: dadarek/wait-for-dependencies
@@ -28,12 +46,5 @@ services:
     networks:       
       - frontend
 
-  zookeeper:
-    image: zookeeper:3.4
-    networks:       
-      - frontend
-    ports:
-      - "2181:2181"
-
-networks:   
+networks:
   frontend:
