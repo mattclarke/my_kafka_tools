@@ -34,6 +34,7 @@ if __name__ == "__main__":
         "local_forwarder_config",
         "local_visualisation",
         "local_detector",
+        "local_nicos_devices",
     ]
 
     for name in topics:
