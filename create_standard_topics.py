@@ -27,7 +27,6 @@ if __name__ == "__main__":
         "local_jbi_commands",
         "local_filewriter_status",
         "local_filewriter_pool",
-        "local_jbi_visualisation",
         "local_filewriter",
         "local_forwarder_commands",
         "local_forwarder_status",
@@ -35,6 +34,8 @@ if __name__ == "__main__":
         "local_visualisation",
         "local_detector",
         "local_nicos_devices",
+        "local_sample_env",
+        "local_motion",
     ]
 
     for name in topics:
