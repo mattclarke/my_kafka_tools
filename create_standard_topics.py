@@ -36,8 +36,15 @@ if __name__ == "__main__":
         "local_nicos_devices",
         "local_sample_env",
         "local_motion",
+        "local_detector_2",
+        "test_filewriter_status",
+        "test_filewriter_pool",
+        "test_filewriter_inst1",
+        "test_filewriter_inst2",
+        "test_motion",
+        "test_detector",
     ]
 
     for name in topics:
         print(f"creating {name}")
-        create_topic("localhost:9092", name, 1)
+        create_topic("localhost:9092", name, 3)
